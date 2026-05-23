@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Operating System — Personal CFO 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0d0d0f;
+  --ink2: #161618;
+  --ink3: #1e1e21;
+  --ink4: #252528;
+  --border: #2c2c30;
+  --border2: #38383d;
+  --cream: #f0ece4;
+  --cream-dim: rgba(240,236,228,0.06);
+  --gold: #c8a96e;
+  --gold2: #e8c98a;
+  --gold-fade: rgba(200,169,110,0.12);
+  --rose: #d4706a;
+  --rose-fade: rgba(212,112,106,0.10);
+  --sage: #6b9e8a;
+  --sage-fade: rgba(107,158,138,0.10);
+  --sky: #6a97b8;
+  --sky-fade: rgba(106,151,184,0.10);
+  --amber: #c8894e;
+  --amber-fade: rgba(200,137,78,0.10);
+  --text: #ddd8d0;
+  --muted: #7a7872;
+  --faint: #3a3a3e;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–ink);
+color: var(–text);
+font-family: ‘IBM Plex Sans’, sans-serif;
+font-size: 13.5px;
+line-height: 1.65;
+min-height: 100vh;
+}
+
+/* ─── GRAIN OVERLAY ─── */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘noise’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23noise)’ opacity=‘0.04’/%3E%3C/svg%3E”);
+pointer-events: none;
+z-index: 0;
+opacity: 0.4;
+}
+
+/* ─── HERO ─── */
+.hero {
+position: relative;
+background: var(–ink2);
+border-bottom: 1px solid var(–border);
+padding: 48px 48px 40px;
+overflow: hidden;
+}
+.hero::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+background: linear-gradient(90deg, transparent 0%, var(–gold) 30%, var(–gold2) 60%, transparent 100%);
+}
+.hero::after {
+content: ‘CFO’;
+position: absolute;
+right: 48px; top: 50%;
+transform: translateY(-50%);
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 180px;
+font-weight: 700;
+color: rgba(200,169,110,0.04);
+line-height: 1;
+pointer-events: none;
+}
+.hero-inner { max-width: 1140px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-eyebrow {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 4px;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 12px;
+}
+.hero-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 52px;
+font-weight: 700;
+line-height: 1.05;
+color: var(–cream);
+margin-bottom: 6px;
+}
+.hero-title em { color: var(–gold); font-style: normal; }
+.hero-sub {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+color: var(–muted);
+margin-bottom: 28px;
+}
+.kpi-strip {
+display: flex;
+gap: 2px;
+flex-wrap: wrap;
+}
+.kpi {
+background: var(–ink3);
+border: 1px solid var(–border);
+padding: 10px 18px;
+flex: 1;
+min-width: 140px;
+}
+.kpi-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 4px;
+}
+.kpi-val {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 26px;
+font-weight: 700;
+line-height: 1;
+}
+
+/* ─── LAYOUT ─── */
+.wrap { max-width: 1140px; margin: 0 auto; padding: 48px 48px; }
+.section { margin-bottom: 64px; }
+
+.sec-head {
+display: flex;
+align-items: baseline;
+gap: 14px;
+border-bottom: 1px solid var(–border);
+padding-bottom: 14px;
+margin-bottom: 28px;
+}
+.sec-n {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+letter-spacing: 3px;
+color: var(–gold);
+}
+.sec-t {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 28px;
+font-weight: 700;
+color: var(–cream);
+}
+.sec-badge {
+margin-left: auto;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+padding: 4px 10px;
+border: 1px solid;
+}
+.b-rose { color: var(–rose); border-color: rgba(212,112,106,0.4); background: var(–rose-fade); }
+.b-sage { color: var(–sage); border-color: rgba(107,158,138,0.4); background: var(–sage-fade); }
+.b-sky  { color: var(–sky);  border-color: rgba(106,151,184,0.4); background: var(–sky-fade); }
+.b-gold { color: var(–gold); border-color: rgba(200,169,110,0.4); background: var(–gold-fade); }
+.b-amb  { color: var(–amber);border-color: rgba(200,137,78,0.4); background: var(–amber-fade); }
+
+/* ─── GRIDS ─── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.g5 { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
+.span2 { grid-column: span 2; }
+.span3 { grid-column: span 3; }
+
+/* ─── CARDS ─── */
+.card {
+background: var(–ink2);
+border: 1px solid var(–border);
+padding: 20px 22px;
+}
+.card-label {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 10px;
+}
+.card-big {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 36px;
+font-weight: 700;
+line-height: 1;
+}
+.card-note { font-size: 11.5px; color: var(–muted); margin-top: 5px; }
+
+.c-gold { color: var(–gold); }
+.c-rose { color: var(–rose); }
+.c-sage { color: var(–sage); }
+.c-sky  { color: var(–sky); }
+.c-amb  { color: var(–amber); }
+.c-cream { color: var(–cream); }
+.c-muted { color: var(–muted); }
+
+/* ─── DANGER BOX ─── */
+.danger-box {
+background: rgba(212,112,106,0.06);
+border-left: 3px solid var(–rose);
+border-top: 1px solid rgba(212,112,106,0.2);
+border-bottom: 1px solid rgba(212,112,106,0.2);
+border-right: 1px solid rgba(212,112,106,0.2);
+padding: 16px 20px;
+margin-bottom: 14px;
+}
+.danger-box h4 {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 17px;
+font-weight: 700;
+color: var(–rose);
+margin-bottom: 5px;
+}
+.danger-box p { font-size: 13px; color: #c8a0a0; line-height: 1.7; }
+
+.warn-box {
+background: rgba(200,137,78,0.06);
+border-left: 3px solid var(–amber);
+border: 1px solid rgba(200,137,78,0.2);
+border-left: 3px solid var(–amber);
+padding: 14px 18px;
+margin-bottom: 12px;
+font-size: 13px;
+color: #c8a882;
+line-height: 1.7;
+}
+.warn-box strong { color: var(–amber); }
+
+.ok-box {
+background: rgba(107,158,138,0.06);
+border-left: 3px solid var(–sage);
+border: 1px solid rgba(107,158,138,0.2);
+border-left: 3px solid var(–sage);
+padding: 14px 18px;
+margin-bottom: 12px;
+font-size: 13px;
+color: #98c4b2;
+line-height: 1.7;
+}
+.ok-box strong { color: var(–sage); }
+
+.info-box {
+background: rgba(106,151,184,0.06);
+border-left: 3px solid var(–sky);
+border: 1px solid rgba(106,151,184,0.2);
+border-left: 3px solid var(–sky);
+padding: 14px 18px;
+margin-bottom: 12px;
+font-size: 13px;
+color: #94b8d4;
+line-height: 1.7;
+}
+.info-box strong { color: var(–sky); }
+
+/* ─── PROGRESS BARS ─── */
+.pbar-row {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 9px;
+}
+.pbar-label {
+width: 150px;
+flex-shrink: 0;
+font-size: 12px;
+color: var(–muted);
+font-family: ‘IBM Plex Mono’, monospace;
+}
+.pbar-track {
+flex: 1;
+background: var(–faint);
+height: 6px;
+position: relative;
+overflow: hidden;
+}
+.pbar-fill {
+height: 100%;
+position: relative;
+transition: width 1s cubic-bezier(0.16,1,0.3,1);
+}
+.pbar-fill::after {
+content: ‘’;
+position: absolute;
+right: 0; top: 0; bottom: 0;
+width: 2px;
+background: white;
+opacity: 0.4;
+}
+.pbar-val {
+width: 110px;
+text-align: right;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10.5px;
+flex-shrink: 0;
+}
+.fill-rose { background: var(–rose); }
+.fill-gold { background: var(–gold); }
+.fill-sage { background: var(–sage); }
+.fill-sky  { background: var(–sky); }
+.fill-amb  { background: var(–amber); }
+
+/* ─── TABLES ─── */
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th {
+text-align: left;
+padding: 9px 14px;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: var(–muted);
+border-bottom: 1px solid var(–border);
+white-space: nowrap;
+}
+td { padding: 9px 14px; border-bottom: 1px solid var(–faint); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(–cream-dim); }
+.mono { font-family: ‘IBM Plex Mono’, monospace; font-size: 12px; }
+.t-right { text-align: right; }
+.t-center { text-align: center; }
+.t-bold { font-weight: 600; }
+.row-highlight { background: rgba(200,169,110,0.05) !important; }
+
+/* ─── TIMELINE ─── */
+.tl { position: relative; padding-left: 30px; }
+.tl::before {
+content: ‘’;
+position: absolute;
+left: 8px; top: 12px; bottom: 12px;
+width: 1px;
+background: linear-gradient(180deg, var(–gold), var(–border), transparent);
+}
+.tl-item {
+position: relative;
+background: var(–ink2);
+border: 1px solid var(–border);
+padding: 18px 20px;
+margin-bottom: 14px;
+transition: border-color 0.2s;
+}
+.tl-item:hover { border-color: var(–gold); }
+.tl-dot {
+position: absolute;
+left: -25px; top: 20px;
+width: 9px; height: 9px;
+border-radius: 50%;
+border: 2px solid var(–border);
+}
+.dot-gold { border-color: var(–gold); background: var(–gold); }
+.dot-rose { border-color: var(–rose); background: var(–rose); }
+.dot-sage { border-color: var(–sage); background: var(–sage); }
+.dot-sky  { border-color: var(–sky); background: var(–sky); }
+.dot-amb  { border-color: var(–amber); background: var(–amber); }
+.tl-month {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 3px;
+}
+.tl-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 18px;
+font-weight: 700;
+color: var(–cream);
+margin-bottom: 6px;
+}
+.tl-desc { font-size: 12.5px; color: var(–muted); line-height: 1.7; }
+.tl-nums { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 12px; }
+.tl-n {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 11px;
+}
+.tl-n span { display: block; font-size: 9px; color: var(–muted); margin-top: 1px; }
+
+/* ─── ALLOCATION BLOCKS ─── */
+.alloc-row { display: flex; gap: 3px; margin-top: 20px; height: 60px; }
+.alloc-seg {
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+font-weight: 500;
+flex-direction: column;
+gap: 2px;
+transition: flex 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.alloc-seg-label { font-size: 8px; opacity: 0.7; }
+
+.alloc-cards { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin-top: 16px; }
+.alloc-card {
+padding: 16px 14px;
+text-align: center;
+border: 1px solid transparent;
+}
+.alloc-pct {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 38px;
+font-weight: 700;
+line-height: 1;
+}
+.alloc-name {
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: var(–muted);
+margin-top: 5px;
+}
+.alloc-sar { font-size: 11.5px; margin-top: 3px; font-family: ‘IBM Plex Mono’, monospace; }
+.alloc-note { font-size: 10px; color: var(–muted); margin-top: 6px; line-height: 1.5; }
+
+/* ─── CHECKLIST ─── */
+.chk { list-style: none; }
+.chk li {
+display: flex;
+gap: 10px;
+padding: 9px 0;
+border-bottom: 1px solid var(–faint);
+font-size: 13px;
+line-height: 1.5;
+}
+.chk li:last-child { border-bottom: none; }
+.chk-icon {
+width: 18px; height: 18px;
+border: 1px solid;
+flex-shrink: 0;
+margin-top: 1px;
+display: flex; align-items: center; justify-content: center;
+font-size: 9px;
+font-weight: 700;
+}
+.ci-stop { color: var(–rose); border-color: rgba(212,112,106,0.5); background: var(–rose-fade); }
+.ci-go   { color: var(–sage); border-color: rgba(107,158,138,0.5); background: var(–sage-fade); }
+.ci-auto { color: var(–sky);  border-color: rgba(106,151,184,0.5); background: var(–sky-fade); }
+.ci-warn { color: var(–amber);border-color: rgba(200,137,78,0.5); background: var(–amber-fade); }
+
+/* ─── GATE BOXES ─── */
+.gate {
+border: 1px solid var(–border);
+padding: 18px 20px;
+margin-bottom: 12px;
+position: relative;
+}
+.gate.locked { opacity: 0.55; }
+.gate-status {
+position: absolute;
+top: 14px; right: 16px;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+.gs-locked { color: var(–rose); }
+.gs-open { color: var(–sage); }
+.gate h4 {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 17px;
+font-weight: 700;
+color: var(–gold);
+margin-bottom: 5px;
+}
+.gate p { font-size: 12.5px; color: var(–muted); line-height: 1.7; }
+
+/* ─── SHEETS MOCK ─── */
+.sheet-tabs { display: flex; gap: 2px; margin-bottom: 0; }
+.stab {
+background: var(–ink3);
+border: 1px solid var(–border);
+border-bottom: none;
+padding: 7px 14px;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 9px;
+letter-spacing: 1px;
+color: var(–muted);
+cursor: default;
+text-transform: uppercase;
+}
+.stab.active { background: var(–ink2); color: var(–gold); }
+.sheet-body {
+background: var(–ink2);
+border: 1px solid var(–border);
+padding: 20px;
+}
+
+/* ─── NOTION MOCK ─── */
+.notion-page {
+background: var(–ink2);
+border: 1px solid var(–border);
+overflow: hidden;
+margin-bottom: 10px;
+}
+.notion-bar {
+background: var(–ink3);
+border-bottom: 1px solid var(–faint);
+padding: 9px 16px;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+color: var(–gold);
+letter-spacing: 1px;
+}
+.notion-content {
+padding: 12px 16px;
+font-size: 12px;
+color: var(–muted);
+line-height: 1.9;
+}
+
+/* ─── DIVIDER ─── */
+.divider {
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–border), transparent);
+margin: 32px 0;
+}
+
+/* ─── MILESTONE TRACK ─── */
+.mtrack {
+display: flex;
+align-items: center;
+overflow-x: auto;
+gap: 0;
+padding: 8px 0;
+}
+.mnode { text-align: center; flex-shrink: 0; padding: 0 10px; }
+.mcirc {
+width: 54px; height: 54px;
+border-radius: 50%;
+border: 2px solid var(–border);
+display: flex; align-items: center; justify-content: center;
+margin: 0 auto 6px;
+font-family: ‘IBM Plex Mono’, monospace;
+font-size: 10px;
+text-align: center;
+line-height: 1.3;
+}
+.mc-gold { border-color: var(–gold); color: var(–gold); background: var(–gold-fade); }
+.mc-sage { border-color: var(–sage); color: var(–sage); background: var(–sage-fade); }
+.mc-sky  { border-color: var(–sky);  color: var(–sky);  background: var(–sky-fade); }
+.mc-amb  { border-color: var(–amber);color: var(–amber);background: var(–amber-fade); }
+.mline { flex-shrink: 0; width: 32px; height: 1px; background: var(–border); }
+.mlabel { font-size: 10px; color: var(–muted); max-width: 80px; line-height: 1.4; }
+
+/* ─── REVIEW TEMPLATE ─── */
+.rev-block {
+border-left: 2px solid var(–gold);
+padding: 12px 16px;
+margin-bottom: 10px;
+background: var(–gold-fade);
+}
+.rev-q { font-family: ‘Cormorant Garamond’, serif; font-size: 16px; font-weight: 700; color: var(–cream); margin-bottom: 5px; }
+.rev-hint { font-size: 12px; color: var(–muted); line-height: 1.7; }
+
+@media (max-width: 768px) {
+.hero { padding: 28px 20px; }
+.hero::after { display: none; }
+.hero-title { font-size: 36px; }
+.wrap { padding: 28px 20px; }
+.g2, .g3, .g4, .g5 { grid-template-columns: 1fr; }
+.span2, .span3 { grid-column: span 1; }
+.alloc-cards { grid-template-columns: 1fr 1fr; }
+.kpi-strip { flex-direction: column; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- ░░ HERO ░░ -->
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">// Personal CFO Dashboard · Financial Operating System · KSA</div>
+    <h1 class="hero-title">Your <em>Wealth</em> Architecture<br>2025 Edition</h1>
+    <div class="hero-sub">Income: 53,000 SAR/mo · 16 Expense Lines · 4 Active Debts · 0 SAR Saved</div>
+    <div class="kpi-strip">
+      <div class="kpi">
+        <div class="kpi-label">Monthly Income</div>
+        <div class="kpi-val c-gold">53,000</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Fixed Monthly Outflow</div>
+        <div class="kpi-val c-rose">35,300</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Quarterly Reserve Needed</div>
+        <div class="kpi-val c-amb">3,333</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Real Surplus</div>
+        <div class="kpi-val c-gold">14,367</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Debt Load (4 streams)</div>
+        <div class="kpi-val c-rose">11,500</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Debt-to-Income</div>
+        <div class="kpi-val c-rose">21.7%</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Current Savings</div>
+        <div class="kpi-val c-rose">0</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ═══════════ SECTION 1 ═══════════ -->
+
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-n">01</div>
+    <div class="sec-t">Financial Diagnosis</div>
+    <div class="sec-badge b-rose">Critical State</div>
+  </div>
+
+  <!-- CRITICAL ALERT -->
+
+  <div class="warn-box" style="margin-bottom:20px">
+    <strong>⚠ QUARTERLY FEES INTERPRETATION REQUIRED:</strong> "40,000 SAR on quarterly basis" — this is either 40,000/year (paid quarterly = 10,000 every 3 months) OR 40,000 every quarter (160,000/year). I've used 40,000/year = 3,333 SAR/month reserve. <strong>If it's 40,000/quarter, your real surplus collapses to 1,034 SAR/month</strong> and this plan changes entirely. Confirm this immediately.
+  </div>
+
+  <!-- Stat Cards -->
+
+  <div class="g4" style="margin-bottom:18px">
+    <div class="card">
+      <div class="card-label">Gross Income</div>
+      <div class="card-big c-gold">53,000</div>
+      <div class="card-note">SAR per month</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Fixed Monthly Outflow</div>
+      <div class="card-big c-rose">35,300</div>
+      <div class="card-note">66.6% of income — before quarterly</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Real Usable Surplus</div>
+      <div class="card-big c-gold">14,367</div>
+      <div class="card-note">After quarterly reserve (3,333/mo)</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Effective Spend Rate</div>
+      <div class="card-big c-amb">72.9%</div>
+      <div class="card-note">Healthy range: 50–60%</div>
+    </div>
+  </div>
+
+  <!-- Full Expense Breakdown -->
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-label" style="margin-bottom:16px">Complete Expense Map — Every Riyal Accounted</div>
+
+```
+  <div class="pbar-row">
+    <div class="pbar-label">Rent</div>
+    <div class="pbar-track"><div class="pbar-fill fill-sky" style="width:14.2%"></div></div>
+    <div class="pbar-val c-sky mono">7,500 · 14.2%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Loan Payment</div>
+    <div class="pbar-track"><div class="pbar-fill fill-rose" style="width:7.5%"></div></div>
+    <div class="pbar-val c-rose mono">4,000 · 7.5%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Car Payment</div>
+    <div class="pbar-track"><div class="pbar-fill fill-rose" style="width:7.5%"></div></div>
+    <div class="pbar-val c-rose mono">4,000 · 7.5%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Food</div>
+    <div class="pbar-track"><div class="pbar-fill fill-amb" style="width:7.5%"></div></div>
+    <div class="pbar-val c-amb mono">4,000 · 7.5%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Tasheel</div>
+    <div class="pbar-track"><div class="pbar-fill fill-rose" style="width:5.5%"></div></div>
+    <div class="pbar-val c-rose mono">2,900 · 5.5%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Credit Card</div>
+    <div class="pbar-track"><div class="pbar-fill fill-rose" style="width:4.7%"></div></div>
+    <div class="pbar-val c-rose mono">2,500 · 4.7%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Maid</div>
+    <div class="pbar-track"><div class="pbar-fill fill-amb" style="width:4.5%"></div></div>
+    <div class="pbar-val c-amb mono">2,400 · 4.5%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Kids</div>
+    <div class="pbar-track"><div class="pbar-fill fill-gold" style="width:3.8%"></div></div>
+    <div class="pbar-val c-gold mono">2,000 · 3.8%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Transport</div>
+    <div class="pbar-track"><div class="pbar-fill fill-amb" style="width:2.8%"></div></div>
+    <div class="pbar-val mono c-muted">1,500 · 2.8%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Phone Payment</div>
+    <div class="pbar-track"><div class="pbar-fill fill-rose" style="width:1.9%"></div></div>
+    <div class="pbar-val c-rose mono">1,000 · 1.9%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Emergency (contrib)</div>
+    <div class="pbar-track"><div class="pbar-fill fill-sage" style="width:1.9%"></div></div>
+    <div class="pbar-val c-sage mono">1,000 · 1.9%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Random Spending</div>
+    <div class="pbar-track"><div class="pbar-fill fill-amb" style="width:1.9%"></div></div>
+    <div class="pbar-val c-amb mono">1,000 · 1.9%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Subscriptions</div>
+    <div class="pbar-track"><div class="pbar-fill fill-amb" style="width:0.9%"></div></div>
+    <div class="pbar-val mono c-muted">500 · 0.9%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Electricity</div>
+    <div class="pbar-track"><div class="pbar-fill fill-sky" style="width:0.8%"></div></div>
+    <div class="pbar-val mono c-muted">450 · 0.8%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">WiFi</div>
+    <div class="pbar-track"><div class="pbar-fill fill-sky" style="width:0.6%"></div></div>
+    <div class="pbar-val mono c-muted">300 · 0.6%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Water</div>
+    <div class="pbar-track"><div class="pbar-fill fill-sky" style="width:0.5%"></div></div>
+    <div class="pbar-val mono c-muted">250 · 0.5%</div>
+  </div>
+  <div class="pbar-row">
+    <div class="pbar-label">Quarterly Reserve</div>
+    <div class="pbar-track"><div class="pbar-fill fill-gold" style="width:6.3%"></div></div>
+    <div class="pbar-val c-gold mono">3,333 · 6.3%</div>
+  </div>
+
+  <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
+    <div class="pbar-row">
+      <div class="pbar-label" style="color:var(--rose);font-weight:600">Total Committed</div>
+      <div class="pbar-track" style="height:10px"><div class="pbar-fill fill-rose" style="width:72.9%"></div></div>
+      <div class="pbar-val c-rose mono">38,633 · 72.9%</div>
+    </div>
+    <div class="pbar-row">
+      <div class="pbar-label" style="color:var(--gold);font-weight:600">Real Surplus</div>
+      <div class="pbar-track" style="height:10px"><div class="pbar-fill fill-gold" style="width:27.1%"></div></div>
+      <div class="pbar-val c-gold mono">14,367 · 27.1%</div>
+    </div>
+  </div>
+</div>
+
+<!-- Hard Truths -->
+<div>
+  <div class="danger-box">
+    <h4>⚠ Truth #1 — Tasheel is a Phantom Expense Draining 2,900/mo</h4>
+    <p>Tasheel (2,900 SAR) likely covers visa/documentation or household worker services. This is 34,800 SAR per year — more than your kids' tuition obligations and almost half your 80,000 SAR savings target. Audit whether this is reducible, fixed-term, or can be restructured.</p>
+  </div>
+  <div class="danger-box">
+    <h4>⚠ Truth #2 — You Have 4 Debt Streams Bleeding 11,500/mo</h4>
+    <p>Loan (4,000) + Car (4,000) + Phone (1,000) + Credit Card (2,500) = 11,500 SAR/month = 21.7% of income going to creditors. Credit card debt at high interest is your enemy — it likely charges 20–36% APR and grows if you only make minimums.</p>
+  </div>
+  <div class="danger-box">
+    <h4>⚠ Truth #3 — The Quarterly 40K Could Collapse Everything</h4>
+    <p>If fees are 40,000/quarter (not /year), your real surplus is only ~1,034 SAR/month. Zero savings capacity, zero debt acceleration, and the 80,000 SAR goal becomes impossible this year. This one number changes your entire strategy. Know it before you plan anything else.</p>
+  </div>
+  <div class="danger-box">
+    <h4>⚠ Truth #4 — Zero Savings + 60,000 Tuition = Time Bomb</h4>
+    <p>Tuition of 60,000 SAR is coming regardless. You are currently saving 0 toward it. At 14,367 SAR surplus/month, you could fund the entire tuition in 4.2 months — but only if you don't disperse that surplus into lifestyle first.</p>
+  </div>
+  <div class="danger-box">
+    <h4>⚠ Truth #5 — Maid + Random + Subscriptions = 3,900/mo Discretionary</h4>
+    <p>These three lines alone total 3,900 SAR/month, 46,800/year. That is 58.5% of your 80,000 SAR savings goal vanishing into fully optional categories. You cannot want financial freedom and fund full-time domestic help simultaneously — not yet.</p>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- Leak Table -->
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-label" style="margin-bottom:16px">Expense Optimization — Leaks vs Fixed vs Non-Negotiable</div>
+    <div class="tbl-wrap">
+      <table>
+        <tr>
+          <th>Expense</th><th>Current</th><th>Optimized</th><th>Monthly Save</th><th>Annual Impact</th><th>Category</th><th>Priority</th>
+        </tr>
+        <tr>
+          <td>Maid (full → 3 days)</td>
+          <td class="mono c-rose">2,400</td><td class="mono c-sage">1,200</td>
+          <td class="mono c-sage t-bold">1,200</td><td class="mono c-sage">14,400</td>
+          <td>Lifestyle</td><td><span class="sec-badge b-rose">Critical</span></td>
+        </tr>
+        <tr>
+          <td>Credit Card (attack hard)</td>
+          <td class="mono c-rose">2,500 min</td><td class="mono c-sage">3,500+ attack</td>
+          <td class="mono c-sage t-bold">Debt kill</td><td class="mono c-sage">Save interest</td>
+          <td>Debt</td><td><span class="sec-badge b-rose">Critical</span></td>
+        </tr>
+        <tr>
+          <td>Random Spending</td>
+          <td class="mono c-rose">1,000</td><td class="mono c-sage">300</td>
+          <td class="mono c-sage t-bold">700</td><td class="mono c-sage">8,400</td>
+          <td>Discretionary</td><td><span class="sec-badge b-rose">High</span></td>
+        </tr>
+        <tr>
+          <td>Food (meal planning)</td>
+          <td class="mono c-amb">4,000</td><td class="mono c-sage">3,000</td>
+          <td class="mono c-sage t-bold">1,000</td><td class="mono c-sage">12,000</td>
+          <td>Variable Need</td><td><span class="sec-badge b-amb">Medium</span></td>
+        </tr>
+        <tr>
+          <td>Subscriptions (audit)</td>
+          <td class="mono c-amb">500</td><td class="mono c-sage">200</td>
+          <td class="mono c-sage t-bold">300</td><td class="mono c-sage">3,600</td>
+          <td>Lifestyle</td><td><span class="sec-badge b-amb">Medium</span></td>
+        </tr>
+        <tr>
+          <td>Kids budget (review)</td>
+          <td class="mono c-amb">2,000</td><td class="mono c-sage">1,500</td>
+          <td class="mono c-sage t-bold">500</td><td class="mono c-sage">6,000</td>
+          <td>Family</td><td><span class="sec-badge b-gold">Low</span></td>
+        </tr>
+        <tr class="row-highlight">
+          <td class="t-bold">Total Recoverable</td>
+          <td class="mono c-rose t-bold">—</td><td class="mono c-sage t-bold">—</td>
+          <td class="mono c-sage t-bold">3,700</td>
+          <td class="mono c-sage t-bold">44,400</td>
+          <td>—</td><td>—</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 2 ═══════════ -->
+
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-n">02</div>
+    <div class="sec-t">Debt Elimination Strategy</div>
+    <div class="sec-badge b-rose">11,500 SAR/Month to Creditors</div>
+  </div>
+
+  <div class="ok-box">
+    <strong>Recommendation: Modified AVALANCHE.</strong> Attack the Credit Card first (highest interest rate — likely 20–36% APR in KSA). Phone second (smallest balance, quick win). Then Loan. Car last (secured, lowest effective rate). Do NOT just pay minimums on credit card — it compounds against you. Snowball would cost you more in interest. Your income is strong enough for Avalanche discipline.
+  </div>
+
+  <!-- Debt Overview -->
+
+  <div class="g4" style="margin-bottom:18px">
+    <div class="card">
+      <div class="card-label">Credit Card · Priority 1</div>
+      <div class="card-big c-rose">2,500</div>
+      <div class="card-note">Min payment — likely 20–36% APR<br>→ ATTACK FIRST</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Personal Loan · Priority 2</div>
+      <div class="card-big c-rose">4,000</div>
+      <div class="card-note">Fixed installment · get balance now</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Car Finance · Priority 3</div>
+      <div class="card-big c-rose">4,000</div>
+      <div class="card-note">Secured debt · lowest rate</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Phone · Priority 4</div>
+      <div class="card-big c-amb">1,000</div>
+      <div class="card-note">Likely 0% installment — pay minimum</div>
+    </div>
+  </div>
+
+  <!-- Scenarios -->
+
+  <div class="card" style="margin-bottom:18px">
+    <div class="card-label" style="margin-bottom:16px">Acceleration Scenarios — June to December 2025 (7 Months)</div>
+    <div class="tbl-wrap">
+      <table>
+        <tr>
+          <th>Scenario</th><th>Extra/Month to CC</th><th>CC Status by Dec</th><th>Total Extra Debt Paid</th><th>Monthly Savings</th><th>Saved by Dec</th><th>Cuts Required</th>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--sky)">Conservative</strong><br><span style="font-size:11px;color:var(--muted)">Minimal disruption</span></td>
+          <td class="mono">+1,500</td>
+          <td class="mono c-amb">Reduced</td>
+          <td class="mono c-sky">10,500</td>
+          <td class="mono c-sky">12,867</td>
+          <td class="mono c-sky t-bold">~90,000</td>
+          <td style="font-size:11px;color:var(--muted)">Random + subs only</td>
+        </tr>
+        <tr style="background:var(--gold-fade)">
+          <td><strong style="color:var(--gold)">Balanced ★ Recommended</strong><br><span style="font-size:11px;color:var(--muted)">Optimal risk/reward</span></td>
+          <td class="mono">+3,500</td>
+          <td class="mono c-sage">CC likely cleared</td>
+          <td class="mono c-gold">24,500</td>
+          <td class="mono c-gold">10,867</td>
+          <td class="mono c-gold t-bold">~76,000</td>
+          <td style="font-size:11px;color:var(--muted)">Maid + food + misc</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--rose)">Aggressive</strong><br><span style="font-size:11px;color:var(--muted)">Maximum debt kill</span></td>
+          <td class="mono">+6,000</td>
+          <td class="mono c-sage">CC cleared + Loan attack</td>
+          <td class="mono c-rose">42,000</td>
+          <td class="mono c-rose">8,367</td>
+          <td class="mono c-rose t-bold">~58,500</td>
+          <td style="font-size:11px;color:var(--muted)">No maid, strict budget</td>
+        </tr>
+      </table>
+    </div>
+    <div class="warn-box" style="margin-top:14px">
+      <strong>Conservative scenario shows 90,000 SAR possible</strong> — but this assumes you actually redirect surplus to savings (not lifestyle). The discipline gap is the real challenge, not the math.
+    </div>
+  </div>
+
+  <!-- Month by Month -->
+
+  <div class="card">
+    <div class="card-label" style="margin-bottom:18px">Balanced Scenario — Month-by-Month Battle Plan</div>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-dot dot-rose"></div>
+        <div class="tl-month">June 2025 · Month 1</div>
+        <div class="tl-title">Emergency Setup + Debt Inventory</div>
+        <div class="tl-desc">Get exact balances on ALL 4 debts. Open 2 new accounts: Emergency Fund + Tuition Fund. Cancel unused subscriptions this week. Renegotiate maid to part-time. Set auto-transfers on salary day.</div>
+        <div class="tl-nums">
+          <div class="tl-n c-rose">15,000 SAR<span>Debt Payments</span></div>
+          <div class="tl-n c-sage">5,000 SAR<span>To Savings</span></div>
+          <div class="tl-n c-gold">1,500 SAR<span>Emergency Fund</span></div>
+          <div class="tl-n c-muted">Surplus left<span>~3,367 SAR</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot dot-amb"></div>
+        <div class="tl-month">July 2025 · Month 2</div>
+        <div class="tl-title">Full Attack Mode — CC Avalanche Begins</div>
+        <div class="tl-desc">All cuts implemented. Direct 3,500 extra toward credit card above minimum. Auto-savings executing. Track every expense weekly. First real savings milestone: 10,000 SAR total saved.</div>
+        <div class="tl-nums">
+          <div class="tl-n c-rose">15,000 SAR<span>Debt Payments</span></div>
+          <div class="tl-n c-sage">5,500 SAR<span>To Savings</span></div>
+          <div class="tl-n c-gold">Cumul ~10,500<span>Total Saved</span></div>
+          <div class="tl-n c-sky">Q-Reserve<span>3,333 set aside</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot dot-amb"></div>
+        <div class="tl-month">August 2025 · Month 3</div>
+        <div class="tl-title">Momentum — Emergency Fund Milestone</div>
+        <div class="tl-desc">Emergency fund should hit 6,000+ SAR (1 month of essentials covered). Tuition fund receiving 2,000/month. Assess credit card balance — is it payable in full by Oct? If bonus expected, apply entirely to CC.</div>
+        <div class="tl-nums">
+          <div class="tl-n c-rose">15,000 SAR<span>Debt Payments</span></div>
+          <div class="tl-n c-sage">5,500 SAR<span>To Savings</span></div>
+          <div class="tl-n c-gold">Cumul ~16,000<span>Total Saved</span></div>
+          <div class="tl-n c-sage">6,000+ SAR<span>Emerg. Fund</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot dot-gold"></div>
+        <div class="tl-month">September 2025 · Month 4</div>
+        <div class="tl-title">Quarterly Fee Month — Buffer Must Be Ready</div>
+        <div class="tl-desc">10,000 SAR quarterly fee due (assuming 40k/year). Your monthly 3,333 reserve + previous months' reserves should cover this. Do NOT touch savings to pay quarterly fee — that means you under-reserved. Tuition fund: ~8,000 SAR.</div>
+        <div class="tl-nums">
+          <div class="tl-n c-rose">15,000 SAR<span>Debt Payments</span></div>
+          <div class="tl-n c-gold">10,000 DUE<span>Quarterly Fees</span></div>
+          <div class="tl-n c-sage">Cumul ~21,500<span>Total Saved</span></div>
+          <div class="tl-n c-gold">8,000 SAR<span>Tuition Fund</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot dot-gold"></div>
+        <div class="tl-month">October 2025 · Month 5</div>
+        <div class="tl-title">Credit Card Assessment — Is It Cleared?</div>
+        <div class="tl-desc">If CC is cleared, redirect 2,500+ SAR/month to savings (massive acceleration). If not, push harder. Phone payment may be complete — redirect that 1,000 SAR to loan attack. First major debt stream elimination.</div>
+        <div class="tl-nums">
+          <div class="tl-n c-sage">CC Target: Cleared<span>6,000 SAR freed/mo</span></div>
+          <div class="tl-n c-gold">Cumul ~32,000<span>Total Saved</span></div>
+          <div class="tl-n c-sage">12,000 SAR<span>Tuition Fund</span></div>
+          <div class="tl-n c-gold">9,000 SAR<span>Emergency Fund</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot dot-sage"></div>
+        <div class="tl-month">November 2025 · Month 6</div>
+        <div class="tl-title">Acceleration Phase — Freed Cash Compounds</div>
+        <div class="tl-desc">Every debt stream cleared increases your monthly firepower. Begin loan overpayment. Emergency fund target: 1 full month of expenses (15,000–18,000 SAR). Tuition fund approaching 16,000 SAR. Savings rate increasing.</div>
+        <div class="tl-nums">
+          <div class="tl-n c-gold">Cumul ~43,000<span>Total Saved</span></div>
+          <div class="tl-n c-gold">16,000 SAR<span>Tuition Fund</span></div>
+          <div class="tl-n c-sage">10,000+ SAR<span>Emergency Fund</span></div>
+          <div class="tl-n c-sky">Business Gate 1<span>Approaching</span></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot dot-sage"></div>
+        <div class="tl-month">December 2025 · Month 7</div>
+        <div class="tl-title">Year-End Reckoning — CEO Review</div>
+        <div class="tl-desc">Full net worth calculation. Compare where you started vs. now. Plan Q1 2026 with higher income efficiency. If CC + Phone cleared, you have freed 3,500 SAR/month permanently for wealth building. Business seed fund begins.</div>
+        <div class="tl-nums">
+          <div class="tl-n c-gold">~54,000 Target<span>Total Saved</span></div>
+          <div class="tl-n c-gold">~20,000<span>Tuition Fund</span></div>
+          <div class="tl-n c-sage">12,000+<span>Emergency Fund</span></div>
+          <div class="tl-n c-sky">Debts Reduced<span>CC + Phone Cleared</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 3 ═══════════ -->
+
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-n">03</div>
+    <div class="sec-t">Monthly Money System</div>
+    <div class="sec-badge b-sky">Tracking Infrastructure</div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-label" style="margin-bottom:12px">💰 Income Dashboard</div>
+      <table>
+        <tr><th>Source</th><th>Amount</th><th>When</th><th>Status</th></tr>
+        <tr><td>Primary Salary</td><td class="mono c-gold">53,000</td><td class="mono c-muted">Day 1</td><td><span class="sec-badge b-sage">Confirmed</span></td></tr>
+        <tr><td>Etsy / KDP Revenue</td><td class="mono c-sage">Variable</td><td class="mono c-muted">Monthly</td><td><span class="sec-badge b-amb">Track separately</span></td></tr>
+        <tr><td>Shopify Revenue</td><td class="mono c-sage">Variable</td><td class="mono c-muted">Monthly</td><td><span class="sec-badge b-amb">Track separately</span></td></tr>
+        <tr><td>Bonuses / Extra</td><td class="mono c-sage">Variable</td><td class="mono c-muted">As received</td><td><span class="sec-badge b-gold">→ Debt first</span></td></tr>
+        <tr class="row-highlight"><td class="t-bold">Total Minimum</td><td class="mono c-gold t-bold">53,000</td><td></td><td></td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-label" style="margin-bottom:12px">📈 Net Worth Tracker</div>
+      <table>
+        <tr><th>Item</th><th>Current</th><th>Dec Target</th><th>Trend</th></tr>
+        <tr><td>Emergency Fund</td><td class="mono c-rose">0</td><td class="mono c-sage">12,000+</td><td>↑</td></tr>
+        <tr><td>Tuition Fund</td><td class="mono c-rose">0</td><td class="mono c-gold">20,000</td><td>↑</td></tr>
+        <tr><td>General Savings</td><td class="mono c-rose">0</td><td class="mono c-sage">22,000+</td><td>↑</td></tr>
+        <tr><td>CC Debt Balance</td><td class="mono c-rose">Enter →</td><td class="mono c-sage">0 (target)</td><td>↓</td></tr>
+        <tr><td>Phone Debt</td><td class="mono c-rose">Enter →</td><td class="mono c-sage">0 (target)</td><td>↓</td></tr>
+        <tr><td>Loan Balance</td><td class="mono c-rose">Enter →</td><td class="mono c-amb">Reduced</td><td>↓</td></tr>
+        <tr><td>Car Balance</td><td class="mono c-rose">Enter →</td><td class="mono c-amb">On track</td><td>↓</td></tr>
+        <tr class="row-highlight"><td class="t-bold">Net Worth</td><td class="mono c-rose t-bold">Negative</td><td class="mono c-gold t-bold">Improving</td><td>↑</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-label" style="margin-bottom:12px">💳 Debt Tracker — Avalanche Order</div>
+      <table>
+        <tr><th>Debt</th><th>Min Payment</th><th>Extra Attack</th><th>Rate (est)</th><th>Priority</th></tr>
+        <tr><td>Credit Card</td><td class="mono c-rose">2,500</td><td class="mono c-sage">+3,500</td><td class="mono">20–36%</td><td><span class="sec-badge b-rose">1st</span></td></tr>
+        <tr><td>Personal Loan</td><td class="mono c-rose">4,000</td><td class="mono c-muted">Minimum</td><td class="mono">8–12%</td><td><span class="sec-badge b-amb">2nd</span></td></tr>
+        <tr><td>Car Finance</td><td class="mono c-rose">4,000</td><td class="mono c-muted">Minimum</td><td class="mono">4–8%</td><td><span class="sec-badge b-gold">3rd</span></td></tr>
+        <tr><td>Phone</td><td class="mono c-amb">1,000</td><td class="mono c-muted">Minimum</td><td class="mono">0–3%</td><td><span class="sec-badge b-sage">4th</span></td></tr>
+        <tr class="row-highlight"><td class="t-bold">Total</td><td class="mono c-rose t-bold">11,500</td><td class="mono c-sage t-bold">+3,500</td><td>—</td><td>—</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-label" style="margin-bottom:12px">🏦 Savings & Sinking Funds</div>
+      <table>
+        <tr><th>Fund</th><th>Goal</th><th>Monthly</th><th>Dec Est.</th></tr>
+        <tr><td>Emergency Fund</td><td class="mono c-sage">18,000</td><td class="mono c-sage">1,500</td><td class="mono c-sage">10,500</td></tr>
+        <tr><td>Tuition Fund</td><td class="mono c-gold">60,000</td><td class="mono c-gold">2,500</td><td class="mono c-gold">17,500</td></tr>
+        <tr><td>General Savings</td><td class="mono c-sky">80,000</td><td class="mono c-sky">2,500</td><td class="mono c-sky">17,500</td></tr>
+        <tr><td>Quarterly Fee Reserve</td><td class="mono c-gold">10,000/q</td><td class="mono c-gold">3,333</td><td class="mono c-gold">Ready</td></tr>
+        <tr><td>Business Seed</td><td class="mono c-amb">20,000</td><td class="mono c-muted">0 (locked)</td><td class="mono c-muted">TBD</td></tr>
+        <tr class="row-highlight"><td class="t-bold">Total Monthly</td><td>—</td><td class="mono c-gold t-bold">9,833</td><td class="mono c-gold t-bold">~45,500</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 4 ═══════════ -->
+
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-n">04</div>
+    <div class="sec-t">Cash Flow Allocation Plan</div>
+    <div class="sec-badge b-sage">Optimized System</div>
+  </div>
+
+  <div class="g2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="card-label" style="margin-bottom:14px">Current State — Where Your 53,000 Actually Goes</div>
+      <div class="pbar-row">
+        <div class="pbar-label">Needs (fixed)</div>
+        <div class="pbar-track"><div class="pbar-fill fill-sky" style="width:44.3%"></div></div>
+        <div class="pbar-val mono c-sky">44.3% · 23,500</div>
+      </div>
+      <div class="pbar-row">
+        <div class="pbar-label">Debt Payments</div>
+        <div class="pbar-track"><div class="pbar-fill fill-rose" style="width:21.7%"></div></div>
+        <div class="pbar-val mono c-rose">21.7% · 11,500</div>
+      </div>
+      <div class="pbar-row">
+        <div class="pbar-label">Q-Fee Reserve</div>
+        <div class="pbar-track"><div class="pbar-fill fill-gold" style="width:6.3%"></div></div>
+        <div class="pbar-val mono c-gold">6.3% · 3,333</div>
+      </div>
+      <div class="pbar-row">
+        <div class="pbar-label">Savings (contrib)</div>
+        <div class="pbar-track"><div class="pbar-fill fill-sage" style="width:1.9%"></div></div>
+        <div class="pbar-val mono c-sage">1.9% · 1,000</div>
+      </div>
+      <div class="pbar-row">
+        <div class="pbar-label">Investments</div>
+        <div class="pbar-track"><div class="pbar-fill fill-gold" style="width:0%"></div></div>
+        <div class="pbar-val mono c-muted">0% · 0</div>
+      </div>
+      <div class="pbar-row">
+        <div class="pbar-label">Lifestyle / Free</div>
+        <div class="pbar-track"><div class="pbar-fill fill-amb" style="width:25.8%"></div></div>
+        <div class="pbar-val mono c-amb">25.8% · 13,667</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label" style="margin-bottom:14px">Target State — Optimized Post-Cuts Allocation</div>
+      <div class="pbar-row">
+        <div class="pbar-label">Needs (fixed)</div>
+        <div class="pbar-track"><div class="pbar-fill fill-sky" style="width:38%"></div></div>
+        <div class="pbar-val mono c-sky">38% · 20,140</div>
+      </div>
+      <div class="pbar-row">
+        <div class="pbar-label">Debt (attack mode)</div>
+        <div class="pbar-track"><div class="pbar-fill fill-rose" style="width:28%"></div></div>
+        <div class="pbar-val mono c-rose">28% · 15,000</div>
+      </div>
+      <div class="pbar-row">
+        <div class="pbar-label">Q-Fee Reserve</div>
+        <div class="pbar-track"><div class="pbar-fill fill-gold" style="width:6.3%"></div></div>
+        <div class="pbar-val mono c-gold">6.3% · 3,333</div>
+      </div>
+      <div class="pbar-row">
+        <div class="pbar-label">Savings</div>
+        <div class="pbar-track"><div class="pbar-fill fill-sage" style="width:18%"></div></div>
+        <div class="pbar-val mono c-sage">18% · 9,540</div>
+      </div>
+      <div class="pbar-row">
+        <div class="pbar-label">Investments</div>
+        <div class="pbar-track"><div class="pbar-fill fill-gold" style="width:0%"></div></div>
+        <div class="pbar-val mono c-muted">0% → 2026</div>
+      </div>
+      <div class="pbar-row">
+        <div class="pbar-label">Lifestyle</div>
+        <div class="pbar-track"><div class="pbar-fill fill-amb" style="width:10%"></div></div>
+        <div class="pbar-val mono c-amb">10% · 5,300</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Allocation blocks visual -->
+
+  <div class="alloc-cards">
+    <div class="alloc-card" style="background:var(--sky-fade);border-color:rgba(106,151,184,0.25)">
+      <div class="alloc-pct c-sky">38%</div>
+      <div class="alloc-name">Needs</div>
+      <div class="alloc-sar c-sky">20,140 SAR</div>
+      <div class="alloc-note">Rent · Food · Transport · WiFi · Water · Electricity · Kids · Tasheel</div>
+    </div>
+    <div class="alloc-card" style="background:var(--rose-fade);border-color:rgba(212,112,106,0.25)">
+      <div class="alloc-pct c-rose">28%</div>
+      <div class="alloc-name">Debt Attack</div>
+      <div class="alloc-sar c-rose">15,000 SAR</div>
+      <div class="alloc-note">CC overpower · Loan · Car minimum · Phone minimum</div>
+    </div>
+    <div class="alloc-card" style="background:var(--sage-fade);border-color:rgba(107,158,138,0.25)">
+      <div class="alloc-pct c-sage">18%</div>
+      <div class="alloc-name">Savings</div>
+      <div class="alloc-sar c-sage">9,540 SAR</div>
+      <div class="alloc-note">Emergency · Tuition sinking fund · General savings</div>
+    </div>
+    <div class="alloc-card" style="background:var(--gold-fade);border-color:rgba(200,169,110,0.25)">
+      <div class="alloc-pct c-gold">0%</div>
+      <div class="alloc-name">Business</div>
+      <div class="alloc-sar c-gold">Unlock 2026</div>
+      <div class="alloc-note">Haeglo · Beauty brand · Shopify expansion</div>
+    </div>
+    <div class="alloc-card" style="background:var(--amber-fade);border-color:rgba(200,137,78,0.25)">
+      <div class="alloc-pct c-amb">10%</div>
+      <div class="alloc-name">Lifestyle</div>
+      <div class="alloc-sar c-amb">5,300 SAR</div>
+      <div class="alloc-note">Maid (part-time) · Subscriptions · Random · Misc</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 5 ═══════════ -->
+
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-n">05</div>
+    <div class="sec-t">90-Day Reset Plan</div>
+    <div class="sec-badge b-amb">Immediate Action Required</div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-label" style="margin-bottom:12px">🛑 Stop Immediately — Week 1</div>
+      <ul class="chk">
+        <li><div class="chk-icon ci-stop">✕</div><div><strong>Paying credit card minimums only.</strong> At 20–36% APR, minimum payments keep you in debt for years and cost you tens of thousands in interest.</div></li>
+        <li><div class="chk-icon ci-stop">✕</div><div><strong>Untracked random spending.</strong> 1,000 SAR/month with no accountability is a wealth leak. Every riyal must have a name.</div></li>
+        <li><div class="chk-icon ci-stop">✕</div><div><strong>Full-time maid at 2,400 SAR</strong> while savings = 0. This is 28,800/year in domestic help while you have zero financial safety net.</div></li>
+        <li><div class="chk-icon ci-stop">✕</div><div><strong>Paying quarterly fees from monthly flow.</strong> If you don't have a 3,333 SAR/month reserve, the quarterly bill hits like a shock.</div></li>
+        <li><div class="chk-icon ci-stop">✕</div><div><strong>Any discretionary business spending</strong> before emergency fund is funded. This includes Shopify themes, ads, inventory.</div></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="margin-bottom:12px">⚡ Automate This Week — Non-Negotiable</div>
+      <ul class="chk">
+        <li><div class="chk-icon ci-auto">→</div><div><strong>Auto-transfer 3,333 SAR to quarterly reserve account</strong> on salary day — Day 1. This never misses.</div></li>
+        <li><div class="chk-icon ci-auto">→</div><div><strong>Auto-transfer 1,500 SAR to emergency fund</strong> on Day 1. Untouchable. Not a "if I have extra" fund.</div></li>
+        <li><div class="chk-icon ci-auto">→</div><div><strong>Auto-transfer 2,500 SAR to tuition fund</strong> on Day 1. Treat tuition like rent — non-negotiable.</div></li>
+        <li><div class="chk-icon ci-auto">→</div><div><strong>Set standing order for 6,000 SAR to credit card</strong> (minimum 2,500 + 3,500 overpayment) on Day 2.</div></li>
+        <li><div class="chk-icon ci-auto">→</div><div><strong>Enable bank spending alerts</strong> at 50% of each variable category budget.</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-label" style="margin-bottom:14px">📅 Weekly Money Habits — Sunday · 20 Minutes</div>
+    <table>
+      <tr><th>Task</th><th>Time</th><th>Tool</th><th>Frequency</th></tr>
+      <tr><td>Log all transactions from past 7 days. Tag by category.</td><td class="mono">10 min</td><td>Google Sheets</td><td>Every Sunday</td></tr>
+      <tr><td>Check savings accounts — did auto-transfers execute correctly?</td><td class="mono">3 min</td><td>Bank App</td><td>Every Sunday</td></tr>
+      <tr><td>Check credit card balance — is it decreasing meaningfully?</td><td class="mono">2 min</td><td>Bank App</td><td>Every Sunday</td></tr>
+      <tr><td>Review next 7 days' expected outflows. Pre-approve large spends.</td><td class="mono">5 min</td><td>Calendar</td><td>Every Sunday</td></tr>
+      <tr><td>Monthly CFO Review (full 30-min session)</td><td class="mono">30 min</td><td>Notion + Sheets</td><td>1st of Month</td></tr>
+      <tr><td>Quarterly fee check — is reserve fully funded before due date?</td><td class="mono">5 min</td><td>Bank App</td><td>Quarterly</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-label" style="margin-bottom:14px">👑 Monthly Finance CEO Review — 1st of Every Month</div>
+    <div class="g2">
+      <div>
+        <div class="rev-block">
+          <div class="rev-q">1. Income vs. Forecast</div>
+          <div class="rev-hint">Did I receive 53,000+? Any side income from Etsy, Shopify, KDP? Total income this month?</div>
+        </div>
+        <div class="rev-block">
+          <div class="rev-q">2. Every Expense Audited</div>
+          <div class="rev-hint">Did any category go over budget? Why? What decision led to it? What changes next month?</div>
+        </div>
+        <div class="rev-block">
+          <div class="rev-q">3. Debt Balance Check</div>
+          <div class="rev-hint">What are EXACT outstanding balances on all 4 debts today? How much did total debt decrease this month?</div>
+        </div>
+        <div class="rev-block">
+          <div class="rev-q">4. Quarterly Reserve Status</div>
+          <div class="rev-hint">Is the reserve account on track? Next quarterly fee due date? Any shortfall risk?</div>
+        </div>
+      </div>
+      <div>
+        <div class="rev-block">
+          <div class="rev-q">5. Savings Rate Calculation</div>
+          <div class="rev-hint">Savings ÷ income this month. Target: 18%+. Are all 3 funds growing on schedule?</div>
+        </div>
+        <div class="rev-block">
+          <div class="rev-q">6. Net Worth Snapshot</div>
+          <div class="rev-hint">Total assets (savings accounts) minus total liabilities (debt balances). Is net worth increasing?</div>
+        </div>
+        <div class="rev-block">
+          <div class="rev-q">7. Business Gate Review</div>
+          <div class="rev-hint">Which gates are unlocked? Can I safely allocate anything to brand development this month?</div>
+        </div>
+        <div class="rev-block">
+          <div class="rev-q">8. Next Month's Plan</div>
+          <div class="rev-hint">Set next month's budget. Any known large expenses? Adjust allocations. Commit to 3 priorities.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 6 ═══════════ -->
+
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-n">06</div>
+    <div class="sec-t">Business Fund & Brand Development</div>
+    <div class="sec-badge b-gold">Haeglo · Beauty Brand · Shopify</div>
+  </div>
+
+  <div class="warn-box" style="margin-bottom:20px">
+    <strong>CFO Rule:</strong> Building a brand on an unstable financial foundation is the fastest way to destroy both. Your personal finances are the engine. Business investment is the vehicle. The engine comes first — always.
+  </div>
+
+  <div class="card" style="margin-bottom:18px">
+    <div class="card-label" style="margin-bottom:16px">Business Unlock Gates — Must Clear in Order</div>
+    <div class="mtrack">
+      <div class="mnode">
+        <div class="mcirc mc-sage">GATE<br>1</div>
+        <div class="mlabel">Emergency Fund ≥ 10,000 SAR</div>
+      </div>
+      <div class="mline"></div>
+      <div class="mnode">
+        <div class="mcirc mc-gold">GATE<br>2</div>
+        <div class="mlabel">CC Debt Fully Cleared</div>
+      </div>
+      <div class="mline"></div>
+      <div class="mnode">
+        <div class="mcirc mc-sky">GATE<br>3</div>
+        <div class="mlabel">Tuition Fund ≥ 30,000 SAR</div>
+      </div>
+      <div class="mline"></div>
+      <div class="mnode">
+        <div class="mcirc mc-amb">GATE<br>4</div>
+        <div class="mlabel">General Savings ≥ 20,000 SAR</div>
+      </div>
+      <div class="mline"></div>
+      <div class="mnode">
+        <div class="mcirc" style="border-color:var(--gold);color:var(--gold);background:var(--gold-fade)">OPEN<br>BIZ</div>
+        <div class="mlabel">Allocate up to 5,400 SAR/mo to brand</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div>
+      <div class="gate locked">
+        <div class="gate-status gs-locked">🔒 Locked — Now to Aug 2025</div>
+        <h4>Phase 1: Brand Architecture (Zero Cost)</h4>
+        <p>Zero SAR allocated. Use this period entirely for brand strategy, Canva design system, product research, supplier vetting, audience definition. Build Haeglo's full visual identity. Etsy digital products and KDP require zero inventory — start immediately as income supplements, not brand investments.</p>
+      </div>
+      <div class="gate locked">
+        <div class="gate-status gs-locked">🔒 Locked — Conditional on Gate 1 + 2</div>
+        <h4>Phase 2: Micro-Revenue Testing (Sep–Nov 2025)</h4>
+        <p>Max 2,000 SAR/month IF Gates 1 and 2 are cleared. Digital products only — Etsy printables, KDP journals, Canva templates. No physical inventory. No paid ads until organic validation complete. All revenue stays in business account — does not touch household.</p>
+      </div>
+    </div>
+    <div>
+      <div class="gate locked">
+        <div class="gate-status gs-locked">🔒 Locked — All Gates Required</div>
+        <h4>Phase 3: Full Brand Investment (2026)</h4>
+        <p>All 4 gates cleared. Allocate up to 10% of income (5,300 SAR/month) to Haeglo/beauty brand. Begin dropshipping → bulk branding pipeline. Shopify paid theme justified. Micro-influencer testing. This is the moment your brand becomes a business, not a dream.</p>
+      </div>
+      <div class="card">
+        <div class="card-label" style="margin-bottom:10px">Non-Negotiable Business Rules</div>
+        <ul class="chk">
+          <li><div class="chk-icon ci-warn">!</div><div>Business losses may NEVER be covered by household savings. The firewall is permanent.</div></li>
+          <li><div class="chk-icon ci-warn">!</div><div>Maximum business allocation: 10% of income when all gates clear (5,300 SAR/mo).</div></li>
+          <li><div class="chk-icon ci-warn">!</div><div>All business revenue tracked separately. Do not mix with household income.</div></li>
+          <li><div class="chk-icon ci-warn">!</div><div>If household cash-flow goes negative any month, business allocation is suspended immediately.</div></li>
+          <li><div class="chk-icon ci-warn">!</div><div>Free-tier Shopify themes only until 20,000 SAR business revenue is proven.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 7 ═══════════ -->
+
+<div class="section">
+  <div class="sec-head">
+    <div class="sec-n">07</div>
+    <div class="sec-t">Tools & Templates</div>
+    <div class="sec-badge b-sky">Google Sheets + Notion</div>
+  </div>
+
+  <!-- Google Sheets -->
+
+  <div class="card" style="margin-bottom:22px">
+    <div class="card-label" style="margin-bottom:16px">📊 Google Sheets — 8-Tab Financial OS</div>
+    <div class="sheet-tabs">
+      <div class="stab active">Dashboard</div>
+      <div class="stab">Budget</div>
+      <div class="stab">Debt</div>
+      <div class="stab">Savings</div>
+      <div class="stab">Q-Reserve</div>
+      <div class="stab">Transactions</div>
+      <div class="stab">Net Worth</div>
+      <div class="stab">Annual</div>
+    </div>
+    <div class="sheet-body">
+      <div style="margin-bottom:14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:1px">TAB 1: DASHBOARD — Auto-calculated from all other tabs</div>
+      <div class="tbl-wrap">
+        <table>
+          <tr>
+            <th>Cell</th><th>Label</th><th>Formula / Data</th><th>Purpose</th>
+          </tr>
+          <tr><td class="mono c-gold">A1</td><td>Monthly Income</td><td class="mono c-sage">=Income!B2</td><td>Pulls from Income tab</td></tr>
+          <tr><td class="mono c-gold">B1</td><td>Total Expenses</td><td class="mono c-sage">=SUM(Budget!C2:C20)</td><td>Sum of all expense rows</td></tr>
+          <tr><td class="mono c-gold">C1</td><td>Real Surplus</td><td class="mono c-sage">=A1-B1-D1</td><td>After Q-reserve</td></tr>
+          <tr><td class="mono c-gold">D1</td><td>Q-Reserve</td><td class="mono c-sage">=QReserve!B2</td><td>Monthly set-aside</td></tr>
+          <tr><td class="mono c-gold">E1</td><td>Savings Rate</td><td class="mono c-sage">=Savings!B10/A1</td><td>Target: 18%+</td></tr>
+          <tr><td class="mono c-gold">F1</td><td>Debt Load</td><td class="mono c-sage">=Debt!B10/A1</td><td>Target: below 20%</td></tr>
+          <tr><td class="mono c-gold">G1</td><td>Net Worth</td><td class="mono c-sage">=Savings!H2-Debt!H2</td><td>Monthly snapshot</td></tr>
+        </table>
+      </div>
+      <div style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.8">
+        <strong style="color:var(--gold)">Tab: Budget</strong> — All 16 expense lines + quarterly reserve. Columns: Category | Allocated | Actual | Variance | % of Income<br>
+        <strong style="color:var(--gold)">Tab: Debt</strong> — All 4 debts. Columns: Name | Opening Balance | Rate | Min Payment | Extra Payment | Total Paid | Remaining Balance | Payoff Date<br>
+        <strong style="color:var(--gold)">Tab: Savings</strong> — Emergency | Tuition | General | Business. Columns: Fund | Goal | Monthly Add | Running Total | % to Goal | Gap<br>
+        <strong style="color:var(--gold)">Tab: Q-Reserve</strong> — Monthly contribution (3,333) | Accumulated | Next Due Date | Amount Due | Surplus/Shortfall<br>
+        <strong style="color:var(--gold)">Tab: Transactions</strong> — Date | Description | Amount | Category | Fund Affected | Note<br>
+        <strong style="color:var(--gold)">Tab: Net Worth</strong> — Monthly row: Date | Total Assets | Total Liabilities | Net Worth | Month Change<br>
+        <strong style="color:var(--gold)">Tab: Annual</strong> — 12-month view with bar chart. Tracks savings progress, debt reduction, net worth trajectory.
+      </div>
+    </div>
+  </div>
+
+  <!-- Notion Dashboard -->
+
+  <div class="card" style="margin-bottom:22px">
+    <div class="card-label" style="margin-bottom:16px">🗂 Notion Dashboard Structure — 6 Core Pages</div>
+    <div class="g2">
+      <div>
+        <div class="notion-page">
+          <div class="notion-bar">🏠 HOME — Financial Command Center</div>
+          <div class="notion-content">
+            → Month name + current date<br>
+            → 4 key metrics (income / spent / saved / debt remaining)<br>
+            → Savings progress bars (Emergency / Tuition / General)<br>
+            → Debt countdown (days to CC payoff)<br>
+            → Business gate status (locked/unlocked)<br>
+            → This week's #1 financial priority
+          </div>
+        </div>
+        <div class="notion-page">
+          <div class="notion-bar">📋 Monthly Review Database</div>
+          <div class="notion-content">
+            Database with 1 page per month<br>
+            Template: Income | Expenses | Debt Status | Savings | Wins | Misses | Decision Log | Next Month Goals<br>
+            Filter by: Month | Year | Status
+          </div>
+        </div>
+        <div class="notion-page">
+          <div class="notion-bar">💳 Debt War Room</div>
+          <div class="notion-content">
+            Timeline view: 4 debts with payoff dates<br>
+            Each debt: Balance today | Rate | Monthly payment | Payoff date | Extra payments log<br>
+            Celebration milestones: when each is cleared
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="notion-page">
+          <div class="notion-bar">🏦 Savings Control Tower</div>
+          <div class="notion-content">
+            Emergency Fund: progress bar toward 18,000 SAR<br>
+            Tuition Fund: countdown to needed date + progress<br>
+            General Savings: progress toward 80,000<br>
+            Q-Reserve: balance vs. next due date<br>
+            Business Seed: locked with unlock criteria visible
+          </div>
+        </div>
+        <div class="notion-page">
+          <div class="notion-bar">📅 Weekly Finance Log</div>
+          <div class="notion-content">
+            Date | Week # | Highlight Spend | Unexpected Cost | Savings Transferred | Debt Status | Mood (1-10)<br>
+            Simple database — 5 minutes every Sunday<br>
+            Reveals patterns over time
+          </div>
+        </div>
+        <div class="notion-page">
+          <div class="notion-bar">🏢 Business OS (Locked Until Gate 1)</div>
+          <div class="notion-content">
+            Brand strategy docs · Haeglo identity board<br>
+            Product research database<br>
+            Supplier tracker · Revenue log<br>
+            P&L by store · Gate unlock tracker<br>
+            Goal: zero confusion, zero leakage into household
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Annual Savings Tracker -->
+
+  <div class="card" style="margin-bottom:22px">
+    <div class="card-label" style="margin-bottom:16px">📈 Annual Savings Tracker — Balanced Scenario Projection (Jun–Dec)</div>
+    <div class="tbl-wrap">
+      <table>
+        <tr>
+          <th>Month</th><th>Income</th><th>Emerg. Fund</th><th>Tuition Fund</th><th>General Savings</th><th>Cumul. Saved</th><th>CC Balance</th><th>Extra to Debt</th>
+        </tr>
+        <tr><td class="t-bold">June</td><td class="mono">53,000</td><td class="mono c-sage">+1,500</td><td class="mono c-gold">+2,500</td><td class="mono c-sky">+1,500</td><td class="mono c-sage t-bold">5,500</td><td class="mono c-rose">Reduce</td><td class="mono c-rose">+3,500</td></tr>
+        <tr style="background:var(--cream-dim)"><td class="t-bold">July</td><td class="mono">53,000</td><td class="mono c-sage">+1,500</td><td class="mono c-gold">+2,500</td><td class="mono c-sky">+2,000</td><td class="mono c-sage t-bold">13,000</td><td class="mono c-rose">Reducing</td><td class="mono c-rose">+3,500</td></tr>
+        <tr><td class="t-bold">August</td><td class="mono">53,000</td><td class="mono c-sage">+1,500</td><td class="mono c-gold">+2,500</td><td class="mono c-sky">+2,000</td><td class="mono c-sage t-bold">19,000</td><td class="mono c-amb">Low</td><td class="mono c-rose">+3,500</td></tr>
+        <tr style="background:var(--cream-dim)"><td class="t-bold">September ⚠</td><td class="mono">53,000</td><td class="mono c-sage">+1,500</td><td class="mono c-gold">+2,500</td><td class="mono c-sky">+1,000</td><td class="mono c-sage t-bold">24,000</td><td class="mono c-amb">Near 0</td><td class="mono c-rose">+3,500 + Q-fee</td></tr>
+        <tr><td class="t-bold">October</td><td class="mono">53,000</td><td class="mono c-sage">+1,500</td><td class="mono c-gold">+2,500</td><td class="mono c-sky">+3,000</td><td class="mono c-sage t-bold">31,000</td><td class="mono c-sage">CLEARED</td><td class="mono c-sky">Redirect freed cash</td></tr>
+        <tr style="background:var(--cream-dim)"><td class="t-bold">November</td><td class="mono">53,000</td><td class="mono c-sage">+1,500</td><td class="mono c-gold">+2,500</td><td class="mono c-sky">+4,000</td><td class="mono c-sage t-bold">39,000</td><td class="mono c-sage">0</td><td class="mono c-sky">→ Loan attack</td></tr>
+        <tr><td class="t-bold">December</td><td class="mono">53,000</td><td class="mono c-sage">+1,500</td><td class="mono c-gold">+2,500</td><td class="mono c-sky">+4,000</td><td class="mono c-sage t-bold">47,000</td><td class="mono c-sage">0</td><td class="mono c-sky">→ Loan attack</td></tr>
+        <tr class="row-highlight">
+          <td class="t-bold c-gold">TOTALS</td><td class="mono">371,000</td>
+          <td class="mono c-sage t-bold">10,500</td>
+          <td class="mono c-gold t-bold">17,500</td>
+          <td class="mono c-sky t-bold">17,500</td>
+          <td class="mono c-gold t-bold">~47,000</td>
+          <td class="mono c-sage t-bold">Cleared</td>
+          <td class="mono c-rose t-bold">~24,500 extra</td>
+        </tr>
+      </table>
+    </div>
+    <div class="warn-box" style="margin-top:14px">
+      <strong>Gap to 80,000 SAR target: ~33,000 SAR.</strong> This is bridgeable through: (1) Aggressive scenario instead of Balanced, (2) Side income from Etsy/KDP/Shopify, (3) Carrying the plan into Q1 2026 with higher savings rate after CC is cleared. The 80,000 target is achievable — but requires either deeper cuts or income growth. Do both.
+    </div>
+  </div>
+
+  <!-- Master Action Checklist -->
+
+  <div class="card">
+    <div class="card-label" style="margin-bottom:16px">✅ Master Priority Checklist — Ordered by Impact</div>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>#</th><th>Action</th><th>Deadline</th><th>Impact</th><th>✓</th></tr>
+        <tr><td class="mono c-rose t-bold">1</td><td><strong>Clarify quarterly fees:</strong> Is it 40K/year or 40K/quarter? Entire plan hinges on this.</td><td class="mono c-rose">TODAY</td><td class="c-rose">Critical</td><td>☐</td></tr>
+        <tr><td class="mono c-rose t-bold">2</td><td>Get exact remaining balances on CC, Loan, Car, Phone.</td><td class="mono c-rose">This week</td><td class="c-rose">Critical</td><td>☐</td></tr>
+        <tr><td class="mono c-rose t-bold">3</td><td>Open dedicated Emergency Fund account. Auto-transfer 1,500 SAR Day 1.</td><td class="mono c-rose">This week</td><td class="c-rose">Critical</td><td>☐</td></tr>
+        <tr><td class="mono c-rose t-bold">4</td><td>Open dedicated Tuition Fund account. Auto-transfer 2,500 SAR Day 1.</td><td class="mono c-rose">This week</td><td class="c-rose">Critical</td><td>☐</td></tr>
+        <tr><td class="mono c-rose t-bold">5</td><td>Open Q-Reserve account. Auto-transfer 3,333 SAR Day 1.</td><td class="mono c-rose">This week</td><td class="c-rose">Critical</td><td>☐</td></tr>
+        <tr><td class="mono c-amb t-bold">6</td><td>Set credit card payment to 6,000 SAR/month (min + 3,500 attack).</td><td class="mono c-amb">June 1st</td><td class="c-amb">Very High</td><td>☐</td></tr>
+        <tr><td class="mono c-amb t-bold">7</td><td>Audit and cancel all unused subscriptions.</td><td class="mono c-amb">48 hours</td><td class="c-amb">High</td><td>☐</td></tr>
+        <tr><td class="mono c-amb t-bold">8</td><td>Negotiate maid to 3 days/week (reduce to 1,200 SAR).</td><td class="mono c-amb">This week</td><td class="c-amb">High</td><td>☐</td></tr>
+        <tr><td class="mono c-gold t-bold">9</td><td>Implement food budget: 3,000 SAR max/month. Start meal planning.</td><td class="mono c-gold">June</td><td class="c-gold">Medium</td><td>☐</td></tr>
+        <tr><td class="mono c-gold t-bold">10</td><td>Build Google Sheets tracker using the 8-tab structure above.</td><td class="mono c-gold">Week 1</td><td class="c-gold">Medium</td><td>☐</td></tr>
+        <tr><td class="mono c-gold t-bold">11</td><td>Build Notion dashboard. Set home page as financial command center.</td><td class="mono c-gold">Week 2</td><td class="c-gold">Medium</td><td>☐</td></tr>
+        <tr><td class="mono c-sky t-bold">12</td><td>Begin Etsy/KDP digital products — zero cost brand revenue now.</td><td class="mono c-sky">June</td><td class="c-sky">Strategic</td><td>☐</td></tr>
+        <tr><td class="mono c-sky t-bold">13</td><td>Commit to Sunday money habit (20 min every week, no exceptions).</td><td class="mono c-sky">Recurring</td><td class="c-sky">Long-term</td><td>☐</td></tr>
+        <tr><td class="mono c-sky t-bold">14</td><td>Monthly CFO Review on 1st of every month. Non-negotiable.</td><td class="mono c-sky">Recurring</td><td class="c-sky">Long-term</td><td>☐</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+
+<div style="border-top:1px solid var(--border);padding:36px 0;margin-top:32px;text-align:center">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">Financial Operating System · Saudi Arabia · 2025</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);margin-bottom:8px">"You don't build wealth by accident. You build it by design."</div>
+  <div style="font-size:11px;color:var(--muted)">Update this dashboard on the 1st of every month. Review debt balances quarterly. Adjust aggressively.</div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+// Animate bars on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const fills = e.target.querySelectorAll('.pbar-fill');
+      fills.forEach(f => {
+        const w = f.getAttribute('data-w') || f.style.width;
+        f.setAttribute('data-w', w);
+        f.style.width = '0';
+        requestAnimationFrame(() => {
+          setTimeout(() => { f.style.width = w; }, 100);
+        });
+      });
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.card').forEach(c => observer.observe(c));
+</script>
+
+</body>
+</html>
